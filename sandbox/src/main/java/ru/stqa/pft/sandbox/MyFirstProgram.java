@@ -7,9 +7,8 @@ public class MyFirstProgram {
     hello("user");
     hello("Alexei");
 
-    Square s = new Square();
-    s.l = 5;
-    System.out.println("Площадь квадрата со стороной " + s.l + " = " + area(s));
+    Square s = new Square(5);
+    System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
 
     double a = 4;
     double b = 6;
@@ -18,10 +17,6 @@ public class MyFirstProgram {
 
   public static void hello(String somebody) {
     System.out.println("Hello, " + somebody + "!");
-  }
-
-  public static double area(Square s) {
-    return s.l * s.l;
   }
 
   public static double area(double a, double b) {
