@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests {
     FirefoxDriver wd;
@@ -31,7 +32,7 @@ public class ContactCreationTests {
     }
     
     @Test
-    public void testCreationTest() {
+    public void testContactCreation() {
         gotoContactForm();
         fillContactForm(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "testmail@mail.ru"));
         submitContactForm();
