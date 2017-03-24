@@ -50,4 +50,18 @@ public class GroupHelper extends HelperBase {
   public void initGroupModificationFooter() {
     click(By.xpath("//div/div[4]/form/input[6]"));
   }
+
+  public void deleteSelectedGroupsFooter() {
+    click(By.xpath("//div/div[4]/form/input[5]"));
+  }
+
+  public void initGroupCreationFooter() {
+    click(By.xpath("//div/div[4]/form/input[4]"));
+  }
+
+  public void selectSeveralGroups() {
+    click(By.xpath("//div/div[4]/form/span[1]/input"));
+    click(By.xpath("//div/div[4]/form/span[2]/input"));
+    click(By.xpath("//div/div[4]/form/span[3]/input"));
+  }
 }
