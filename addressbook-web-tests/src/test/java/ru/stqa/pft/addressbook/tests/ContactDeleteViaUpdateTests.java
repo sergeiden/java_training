@@ -10,10 +10,7 @@ public class ContactDeleteViaUpdateTests extends TestBase {
 
   @Test
   public void testContactDeleteViaUpdate() {
-    app.getContactHelper().gotoContactForm();
-    app.getContactHelper().fillContactForm(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "testmail@mail.ru"));
-    app.getContactHelper().submitContactForm();
-    app.getContactHelper().returnToContactsPage();
+    app.getContactHelper().gotoHomePage();
     app.getContactHelper().modifyContact();
     app.getContactHelper().deleteUpdateContact();
   }

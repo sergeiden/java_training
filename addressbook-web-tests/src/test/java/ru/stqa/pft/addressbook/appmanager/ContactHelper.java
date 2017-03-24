@@ -60,6 +60,10 @@ public class ContactHelper extends HelperBase {
   public void deleteUpdateContact() {
     click(By.xpath("//div/div[4]/form[2]/input[2]"));
   }
+
+  public void gotoHomePage() {
+    click(By.linkText("home"));
+  }
 }
 
 
