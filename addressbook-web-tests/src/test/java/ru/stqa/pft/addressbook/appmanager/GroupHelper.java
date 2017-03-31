@@ -62,7 +62,6 @@ public class GroupHelper extends HelperBase {
   public void selectSeveralGroups() {
     click(By.xpath("//div/div[4]/form/span[1]/input"));
     click(By.xpath("//div/div[4]/form/span[2]/input"));
-    click(By.xpath("//div/div[4]/form/span[3]/input"));
   }
 
   public void createGroup(GroupData group) {
