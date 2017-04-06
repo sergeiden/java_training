@@ -1,9 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.List;
 
 /**
  * Created by 1 on 23.03.2017.
@@ -13,16 +14,15 @@ public class GroupMultipleDeletionTests extends TestBase {
   @Test
   public void GroupMultipleDeletionTests() {
     app.getNavigationHelper().gotoGroupPage();
-    if (! app.getNavigationHelper().isElementPresent(By.xpath("//div/div[4]/form/span[1]/input"))) {
+    while (app.getGroupHelper().getGroupCount() < 2) {
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
-    if (! app.getNavigationHelper().isElementPresent(By.xpath("//div/div[4]/form/span[2]/input"))) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
-    }
-    int before = app.getGroupHelper().getGroupCount();
-    app.getGroupHelper().selectSeveralGroups();
+    List<GroupData> before = app.getGroupHelper().getGroupList();
+    app.getGroupHelper().selectGroup(before.size() - 1);
+    app.getGroupHelper().selectGroup(before.size() - 2);
     app.getGroupHelper().deleteSelectedGroups();
-    int after = app.getGroupHelper().getGroupCount();
-    Assert.assertEquals(after, before - 2);
+    app.getGroupHelper().returnToGroupPage();
+    List<GroupData> after = app.getGroupHelper().getGroupList();
+    Assert.assertEquals(after.size(), before.size() - 2);
   }
 }
