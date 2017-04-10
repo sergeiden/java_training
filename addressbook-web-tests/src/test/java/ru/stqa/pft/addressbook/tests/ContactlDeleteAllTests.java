@@ -12,19 +12,17 @@ public class ContactlDeleteAllTests extends TestBase {
 
   @BeforeMethod
   public void insurePreconditions() {
-    app.getNavigationHelper().gotoHomePage();
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "test@test.ru"));
+    app.goTo().homePage();
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "test@test.ru"));
     }
   }
 
   @Test
   public void testDeleteAllContacts() {
-    app.getContactHelper().selectAllContacts();
-    app.getContactHelper().deleteContact();
-    app.getContactHelper().acceptAlert();
-    app.getNavigationHelper().gotoHomePage();
-    int after = app.getContactHelper().getContactCount();
+    app.contact().deleteAll();
+    app.goTo().homePage();
+    int after = app.contact().getContactCount();
     Assert.assertEquals(after, 0);
   }
 }

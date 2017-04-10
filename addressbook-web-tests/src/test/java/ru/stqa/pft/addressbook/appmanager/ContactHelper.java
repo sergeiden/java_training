@@ -14,7 +14,6 @@ import java.util.List;
 public class ContactHelper extends HelperBase {
 
 
-
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
@@ -47,7 +46,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div/div[4]/form[2]/div[2]/input"));
   }
 
-  public void selectContact(int index) {
+  public void select(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
@@ -63,10 +62,22 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.xpath(".//td[8]")).get(index).click();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     modifyContact(index);
     fillContactForm(contact);
     updateContact();
+  }
+
+  public void delete(int index) {
+    select(index);
+    deleteContact();
+    acceptAlert();
+  }
+
+  public void deleteAll() {
+    selectAllContacts();
+    deleteContact();
+    acceptAlert();
   }
 
   public void updateContact() {
@@ -77,7 +88,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div/div[4]/form[2]/input[2]"));
   }
 
-  public void createContact(ContactData contact) {
+  public void create(ContactData contact) {
     gotoContactForm();
     fillContactForm(contact);
     submitContactForm();
@@ -88,7 +99,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {

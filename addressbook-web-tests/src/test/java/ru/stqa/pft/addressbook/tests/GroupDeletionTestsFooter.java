@@ -14,20 +14,18 @@ public class GroupDeletionTestsFooter extends TestBase {
 
   @BeforeMethod
   public void insurePreconditions() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+    app.goTo().groupPage();
+    if (app.group().list().size() == 0) {
+      app.group().create(new GroupData("test1", null, null));
     }
   }
 
   @Test
   public void testGroupDeletionFooter() {
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    List<GroupData> before = app.group().list();
     int index = before.size() - 1;
-    app.getGroupHelper().selectGroup(index);
-    app.getGroupHelper().deleteSelectedGroupsFooter();
-    app.getGroupHelper().returnToGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().deleteFooter(index);
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(), index);
 
     before.remove(index);
