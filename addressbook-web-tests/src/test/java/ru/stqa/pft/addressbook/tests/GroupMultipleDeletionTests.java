@@ -16,7 +16,7 @@ public class GroupMultipleDeletionTests extends TestBase {
   public void insurePreconditions() {
     app.goTo().groupPage();
     while (app.group().list().size() < 2) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("Test1"));
     }
   }
 

@@ -16,9 +16,10 @@ public class ContactDeleteViaUpdateTests extends TestBase {
   public void insurePreconditions() {
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "test@test.ru"));
+      app.contact().create(new ContactData().withName("Ivan").withLname("Ivanov").withAddress("Lenina, 20-45").withPhone("926-525-25-25").withEmail("test@test.ru"));
     }
   }
+
   @Test
   public void testContactDeleteViaUpdate() {
     List<ContactData> before = app.contact().list();
