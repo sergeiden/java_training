@@ -33,8 +33,8 @@ public class ContactDeleteViaUpdateTests extends TestBase {
     app.contact().modifyContactById(deletedContact.getId());
     app.contact().deleteUpdateContact();
     app.goTo().homePage();
+    assertThat(app.contact().count(), equalTo(before.size()-1));
     Contacts after = app.contact().all();
-    assertEquals(after.size(), before.size()-1);
 
     assertThat(after, equalTo(before.without(deletedContact)));
   }
