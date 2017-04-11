@@ -1,12 +1,15 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import javafx.scene.effect.SepiaTone;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by 1 on 22.03.2017.
@@ -35,16 +38,16 @@ public class GroupHelper extends HelperBase {
     click(By.name("new"));
   }
 
-  public void modify(int index, GroupData group) {
-    selectGroup(index);
+  public void modify(GroupData group) {
+    selectGroupById(group.getId());
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
     returnToGroupPage();
   }
 
-  public void modifyGroupFooter(int index, GroupData group) {
-    selectGroup(index);
+  public void modifyGroupFooter(GroupData group) {
+    selectGroupById(group.getId());
     initGroupModificationFooter();
     fillGroupForm(group);
     submitGroupModification();
@@ -57,6 +60,10 @@ public class GroupHelper extends HelperBase {
 
   public void selectGroup(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void selectGroupById(int id) {
+    wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
   }
 
   public void initGroupModification() {
@@ -91,8 +98,11 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
-  public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+  public void createFooter(GroupData group) {
+    initGroupCreationFooter();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
   }
 
   public int getGroupCount() {
@@ -105,8 +115,8 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
-  public void deleteFooter(int index) {
-    selectGroup(index);
+  public void deleteFooter(GroupData group) {
+    selectGroupById(group.getId());
     deleteSelectedGroupsFooter();
     returnToGroupPage();
   }
@@ -120,5 +130,22 @@ public class GroupHelper extends HelperBase {
       groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
+  }
+
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      groups.add(new GroupData().withId(id).withName(name));
+    }
+    return groups;
+  }
+
+  public void delete(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    returnToGroupPage();
   }
 }
