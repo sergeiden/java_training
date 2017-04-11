@@ -4,8 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by 1 on 23.03.2017.
@@ -22,11 +25,11 @@ public class GroupMultipleDeletionTests extends TestBase {
 
   @Test
   public void GroupMultipleDeletionTests() {
-    List<GroupData> before = app.group().list();
+    Groups before = app.group().all();
     app.group().selectGroup(before.size() - 1);
     app.group().delete(before.size() - 2);
-    List<GroupData> after = app.group().list();
-    Assert.assertEquals(after.size(), before.size() - 2);
+    Groups after = app.group().all();
+    assertEquals(after.size(), before.size() - 2);
   }
 }
 

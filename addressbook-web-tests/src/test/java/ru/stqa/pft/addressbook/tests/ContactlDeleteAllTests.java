@@ -4,10 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by 1 on 24.03.2017.
@@ -26,8 +29,8 @@ public class ContactlDeleteAllTests extends TestBase {
   public void testDeleteAllContacts() {
     app.contact().deleteAll();
     app.goTo().homePage();
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after, Collections.emptySet());
+    Contacts after = app.contact().all();
+    assertEquals(after, Collections.emptySet());
   }
 }
 

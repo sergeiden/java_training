@@ -72,6 +72,7 @@ public class ContactData {
             ", name='" + name + '\'' +
             '}';
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -79,13 +80,15 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
     return name != null ? name.equals(that.name) : that.name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = lname != null ? lname.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (lname != null ? lname.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
     return result;
   }
