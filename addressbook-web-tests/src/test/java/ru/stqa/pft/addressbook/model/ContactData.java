@@ -1,37 +1,40 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id = Integer.MAX_VALUE;
+  private int id;
   private String lname;
   private String name;
   private String address;
-  private String phone;
-
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
   private String email;
 
-
-  public int getId() {
-    return id;
+  public String getHomePhone() {
+    return homePhone;
   }
 
-  public String getName() {
-    return name;
+  public String getMobilePhone() {
+    return mobilePhone;
   }
 
-  public String getLname() {
-    return lname;
+  public String getWorkPhone() {
+    return workPhone;
   }
 
-  public String getAddress() {
-    return address;
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
   }
 
-  public String getPhone() {
-    return phone;
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
   }
 
-  public String getEmail() {
-    return email;
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
   }
 
   public ContactData withId(int id) {
@@ -54,22 +57,40 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withPhone(String phone) {
-    this.phone = phone;
-    return this;
-  }
-
   public ContactData withEmail(String email) {
     this.email = email;
     return this;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getLname() {
+    return lname;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", lname='" + lname + '\'' +
             ", name='" + name + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             '}';
   }
 
