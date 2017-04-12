@@ -36,8 +36,10 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("lastname"), contactData.getLname());
-    type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getEmail());
   }
 
@@ -136,7 +138,7 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactsCache);
   }
 
-  public Set<ContactData> allData() {
+  public Set<ContactData> allInfo() {
     Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
