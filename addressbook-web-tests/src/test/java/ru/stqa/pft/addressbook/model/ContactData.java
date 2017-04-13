@@ -13,6 +13,16 @@ public class ContactData {
   private String email3;
   private String allPhones;
   private String allEmails;
+  private String details;
+
+  public String getDetails() {
+    return details;
+  }
+
+  public ContactData withDetails(String details) {
+    this.details = details;
+    return this;
+  }
 
   public String getEmail2() {
     return email2;
@@ -132,6 +142,9 @@ public class ContactData {
             ", homePhone='" + homePhone + '\'' +
             ", mobilePhone='" + mobilePhone + '\'' +
             ", workPhone='" + workPhone + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", details='" + details + '\'' +
             '}';
   }
 

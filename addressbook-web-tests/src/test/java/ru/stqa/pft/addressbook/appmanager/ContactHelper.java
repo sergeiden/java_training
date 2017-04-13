@@ -6,15 +6,14 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by 1 on 23.03.2017.
  */
 public class ContactHelper extends HelperBase {
+
+
 
 
   public ContactHelper(WebDriver wd) {
@@ -41,6 +40,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
   }
 
   public void gotoContactForm() {
@@ -124,7 +125,7 @@ public class ContactHelper extends HelperBase {
   private Contacts contactsCache = null;
 
   public Contacts all() {
-    if (contactsCache != null){
+    if (contactsCache != null) {
       return new Contacts(contactsCache);
     }
     contactsCache = new Contacts();
@@ -170,6 +171,17 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
+
+  public ContactData infoFromDetailsPage (ContactData contact){
+    getContactDetails(contact.getId());
+    String details  = wd.findElement(By.id("content")).getText();
+    return new ContactData().withDetails(details);
+  }
+
+  private void getContactDetails(int id) {
+    wd.findElement(By.xpath("//a[@href='view.php?id=" + id + "']")).click();
+  }
 }
+
 
 
