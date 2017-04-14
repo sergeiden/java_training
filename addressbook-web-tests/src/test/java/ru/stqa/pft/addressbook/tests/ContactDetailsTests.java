@@ -18,12 +18,11 @@ public class ContactDetailsTests extends TestBase {
   @BeforeMethod
   public void insurePreconditions() {
     app.goTo().homePage();
-    if (app.contact().list().size() != 0) {
-      app.contact().deleteAll();
+    if (app.contact().list().size() == 0) {
+      ContactData contact = new ContactData().withName("Ivan").withLname("Ivanov").withHomePhone("11-22-90")
+              .withMobilePhone("3333-55-66").withWorkPhone("22 22 00").withAddress("Moscow, Lenina, 20-45").withEmail("test@test.ru").withEmail2("test2@bk.ru").withEmail3("test3@bk.ru");
+      app.contact().create(contact);
     }
-    ContactData contact = new ContactData().withName("Ivan").withLname("Ivanov").withHomePhone("111 55 78")
-            .withMobilePhone("22002").withWorkPhone("333-00-11").withAddress("Moscow,\nLenina, 20-45").withEmail("test@test.ru").withEmail2("test2@bk.ru").withEmail3("test3@bk.ru");
-    app.contact().create(contact);
   }
 
   @Test
@@ -32,13 +31,15 @@ public class ContactDetailsTests extends TestBase {
     ContactData contact = app.contact().allInfo().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     ContactData contactDetails = app.contact().infoFromDetailsPage(contact);
-    assertThat(contactDetails.getDetails(), equalTo(mergeInfoFromEditForm(contactInfoFromEditForm)));
+    assertThat(contactDetails.getDetails().replaceAll("H: ", "").replaceAll("M: ", "").replaceAll("W: ", "").replaceAll("\n", "")
+            , equalTo(mergeInfoFromEditForm(contactInfoFromEditForm).replaceAll("\n", "")));
   }
 
   private String mergeInfoFromEditForm(ContactData contact) {
-    return Arrays.asList(contact.getName() + " " + contact.getLname(), contact.getAddress() + "\n", "H: " + contact.getHomePhone(), "M: " + contact.getMobilePhone(), "W: " + contact.getWorkPhone() + "\n"
+    return Arrays.asList(contact.getName() + " " + contact.getLname(), contact.getAddress()
+            , contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()
             , contact.getEmail(), contact.getEmail2(), contact.getEmail3())
             .stream()
-            .collect(Collectors.joining("\n"));
+            .collect(Collectors.joining());
   }
 }
