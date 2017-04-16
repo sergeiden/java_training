@@ -5,6 +5,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.io.File;
@@ -44,6 +45,8 @@ public class ContactDataGenerator {
     List<ContactData> contacts = generateContacts(count);
     if (format.equals("json")) {
       saveAsJason(contacts, new File(file));
+    } else if (format.equals("xml")) {
+      saveAsXml(contacts, new File(file));
     } else {
       System.out.println("Unrecognized format " + format);
     }
@@ -54,6 +57,15 @@ public class ContactDataGenerator {
     String json = gson.toJson(contacts);
     Writer writer = new FileWriter(file);
     writer.write(json);
+    writer.close();
+  }
+
+  private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
+    XStream xstream = new XStream();
+    xstream.processAnnotations(ContactData.class);
+    String xml = xstream.toXML(contacts);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
     writer.close();
   }
 
@@ -72,4 +84,6 @@ public class ContactDataGenerator {
     }
     return contacts;
   }
+
+
 }
