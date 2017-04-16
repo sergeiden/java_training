@@ -1,37 +1,16 @@
 <list>
   <contact>
     <lname>Fedorov</lname>
-    <name>Denis</name>
+    <name>Ivan</name>
     <address>Lenina, 20-70</address>
     <homePhone>254-00-00</homePhone>
     <email>test0@test.ru</email>
   </contact>
   <contact>
-    <lname>Fedorov</lname>
-    <name>Petr</name>
+    <lname>Ivanov</lname>
+    <name>Pavel</name>
     <address>Lenina, 20-71</address>
     <homePhone>254-11-11</homePhone>
     <email>test1@test.ru</email>
-  </contact>
-  <contact>
-    <lname>Fedorov</lname>
-    <name>Denis</name>
-    <address>Lenina, 20-72</address>
-    <homePhone>254-22-22</homePhone>
-    <email>test2@test.ru</email>
-  </contact>
-  <contact>
-    <lname>Ivanov</lname>
-    <name>Denis</name>
-    <address>Lenina, 20-73</address>
-    <homePhone>254-33-33</homePhone>
-    <email>test3@test.ru</email>
-  </contact>
-  <contact>
-    <lname>Fedorov</lname>
-    <name>Denis</name>
-    <address>Lenina, 20-74</address>
-    <homePhone>254-44-44</homePhone>
-    <email>test4@test.ru</email>
   </contact>
 </list>
