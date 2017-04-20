@@ -4,31 +4,45 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id;
   @Expose
+  @Column(name = "lastname")
   private String lname;
   @Expose
+  @Column(name = "firstname")
   private String name;
   @Expose
   private String address;
   @Expose
+  @Column(name = "home")
   private String homePhone;
+  @Column(name = "mobile")
   private String mobilePhone;
+  @Column(name = "work")
   private String workPhone;
   @Expose
   private String email;
   @Expose
   private String email2;
   private String email3;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmails;
+  @Transient
   private String details;
   @Expose
+  @Transient
   private File photo;
 
   public File getPhoto() {

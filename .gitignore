@@ -14,3 +14,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 addressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/CheckIt.java
+addressbook-web-tests/.idea/workspace.xml
+addressbook-web-tests/test-20170420T183813.log
+*.log

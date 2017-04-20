@@ -1,13 +1,13 @@
 <list>
   <contact>
     <lname>Fedorov</lname>
-    <name>Ivan</name>
+    <name>Pavel</name>
     <address>Lenina, 20-70</address>
     <homePhone>254-00-00</homePhone>
     <email>test0@test.ru</email>
   </contact>
   <contact>
-    <lname>Ivanov</lname>
+    <lname>Petrov</lname>
     <name>Pavel</name>
     <address>Lenina, 20-71</address>
     <homePhone>254-11-11</homePhone>

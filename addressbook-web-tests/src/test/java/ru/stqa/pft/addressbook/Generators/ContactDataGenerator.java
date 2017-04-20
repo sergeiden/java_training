@@ -72,7 +72,7 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      String[] names = new String[]{"Ivan", "Petr", "Denis", "Pavel"};
+      String[] names = new String[]{"Иван", "Петр", "Denis", "Pavel"};
       int n = (int) Math.floor(Math.random() * names.length);
       String name = (names[n]);
       String[] lnames = new String[]{"Petrov", "Ivanov", "Sidorov", "Fedorov"};

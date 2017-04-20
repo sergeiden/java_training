@@ -21,7 +21,7 @@ public class ContactDeletionTests extends TestBase {
     }
   }
 
-  @Test(invocationCount = 6)
+  @Test(invocationCount = 1)
   public void testContactDeletion() {
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
