@@ -5,12 +5,22 @@
     <address>Lenina, 20-70</address>
     <homePhone>254-00-00</homePhone>
     <email>test0@test.ru</email>
+    <photo>d:\Test.txt</photo>
   </contact>
   <contact>
-    <lname>Petrov</lname>
+    <lname>Sidorov</lname>
     <name>Pavel</name>
     <address>Lenina, 20-71</address>
     <homePhone>254-11-11</homePhone>
     <email>test1@test.ru</email>
+    <photo>d:\Test.txt</photo>
+  </contact>
+  <contact>
+    <lname>Petrov</lname>
+    <name>Ivan</name>
+    <address>Lenina, 20-72</address>
+    <homePhone>254-22-22</homePhone>
+    <email>test2@test.ru</email>
+    <photo>d:\Test.txt</photo>
   </contact>
 </list>
