@@ -54,6 +54,17 @@ public class ContactData {
   @Expose
   @Transient
   private String photo;
+  @Transient
+  private String group;
+
+  public String getGroup() {
+    return group;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
 
   public File getPhoto() {
     return new File(photo);
@@ -216,4 +227,6 @@ public class ContactData {
             ", email3='" + email3 + '\'' +
             '}';
   }
+
+
 }

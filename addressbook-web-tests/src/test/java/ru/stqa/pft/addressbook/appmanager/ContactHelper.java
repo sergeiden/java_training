@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
@@ -15,8 +17,6 @@ import java.util.Set;
  * Created by 1 on 23.03.2017.
  */
 public class ContactHelper extends HelperBase {
-
-
 
 
   public ContactHelper(WebDriver wd) {
@@ -35,13 +35,20 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("submit")).click();
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("lastname"), contactData.getLname());
 //    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
+    if (creation) {
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
     type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getEmail());
     type(By.name("email2"), contactData.getEmail2());
@@ -74,7 +81,7 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact) {
     modifyContactById(contact.getId());
-    fillContactForm(contact);
+    fillContactForm(contact, false);
     updateContact();
     contactsCache = null;
   }
@@ -104,7 +111,7 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     gotoContactForm();
-    fillContactForm(contact);
+    fillContactForm(contact, true);
     submitContactForm();
     contactsCache = null;
     returnToContactsPage();
