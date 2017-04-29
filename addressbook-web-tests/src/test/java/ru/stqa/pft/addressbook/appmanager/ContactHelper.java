@@ -43,8 +43,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
     if (creation) {
-      if (contactData.getGroup() != null) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -183,14 +184,24 @@ public class ContactHelper extends HelperBase {
             .withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 
-  public ContactData infoFromDetailsPage (ContactData contact){
+  public ContactData infoFromDetailsPage(ContactData contact) {
     getContactDetails(contact.getId());
-    String details  = wd.findElement(By.id("content")).getText();
+    String details = wd.findElement(By.id("content")).getText();
     return new ContactData().withDetails(details);
   }
 
   private void getContactDetails(int id) {
     wd.findElement(By.xpath("//a[@href='view.php?id=" + id + "']")).click();
+  }
+
+  public void addContactToGroup(int id, String groupName) {
+    selectGroupFromDropDown(groupName);
+    selectContactById(id);
+    wd.findElement(By.name("add")).click();
+  }
+
+  private void selectGroupFromDropDown(String groupName) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
   }
 }
 

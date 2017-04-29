@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,8 +54,24 @@ public class ContactCreationTests extends TestBase {
     return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
-  @Test(dataProvider = "validContactFromXml")
-  public void testContactCreation(ContactData contact) {
+//  @Test(dataProvider = "validContactFromXml")
+//  public void testContactCreation(ContactData contact) {
+//    app.goTo().homePage();
+//    Contacts before = app.db().contacts();
+//    app.contact().create(contact);
+//    assertThat(app.contact().count(), equalTo(before.size()+1));
+//    Contacts after = app.db().contacts();
+//
+//    assertThat(after, equalTo(
+//            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+//  }
+
+  @Test
+  public void testContactCreation() {
+    Groups groups = app.db().groups();
+    ContactData contact = new ContactData().withName("Ivan").withLname("Ivanov")
+            .withPhoto(new File("src/test/resources/Test.jpg")).withAddress("Lenina, 20-45")
+            .withHomePhone("926-525-25-25").withEmail("test@test.ru").inGroup(groups.iterator().next());
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.contact().create(contact);

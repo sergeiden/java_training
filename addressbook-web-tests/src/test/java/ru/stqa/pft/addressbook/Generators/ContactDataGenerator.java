@@ -72,14 +72,14 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      String[] names = new String[]{"Ivan", "Петр", "Denis", "Pavel"};
+      String[] names = new String[]{"Ivan", "Petr", "Denis", "Pavel"};
       int n = (int) Math.floor(Math.random() * names.length);
       String name = (names[n]);
       String[] lnames = new String[]{"Petrov", "Ivanov", "Sidorov", "Fedorov"};
       int ln = (int) Math.floor(Math.random() * names.length);
       String lname = (lnames[ln]);
             contacts.add(new ContactData().withName(String.format("%s", name)).withLname(String.format("%s", lname))
-              .withPhoto(new File("d:/Test.txt")).withAddress(String.format("Lenina, 20-7%s", i))
+//              .withPhoto(new File("d:/Test.txt")).withAddress(String.format("Lenina, 20-7%s", i)).withGroup("Test1")
               .withHomePhone(String.format("254-%s%s-%s%s", i, i, i, i)).withEmail(String.format("test%s@test.ru", i)));
     }
     return contacts;

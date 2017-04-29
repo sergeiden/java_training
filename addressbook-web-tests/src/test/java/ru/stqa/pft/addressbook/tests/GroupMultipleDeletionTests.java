@@ -20,7 +20,7 @@ public class GroupMultipleDeletionTests extends TestBase {
     }
   }
 
-  @Test
+  @Test (invocationCount = 1)
   public void GroupMultipleDeletionTests() {
     Groups before = app.db().groups();
     app.goTo().groupPage();

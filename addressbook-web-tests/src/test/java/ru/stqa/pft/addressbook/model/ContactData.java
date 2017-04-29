@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -54,17 +56,25 @@ public class ContactData {
   @Expose
   @Transient
   private String photo;
-  @Transient
-  private String group;
+//  @Transient
+//  private String group;
+  @ManyToMany (fetch = FetchType.EAGER)
+  @JoinTable (name = "address_in_groups",
+          joinColumns = @JoinColumn (name ="id"), inverseJoinColumns = @JoinColumn (name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+//  public String getGroup() {
+//    return group;
+//  }
+//
+//  public ContactData withGroup(String group) {
+//    this.group = group;
+//    return this;
+//  }
 
   public File getPhoto() {
     return new File(photo);
@@ -192,6 +202,11 @@ public class ContactData {
     return email;
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -201,7 +216,10 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
-    return name != null ? name.equals(that.name) : that.name == null;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
@@ -209,6 +227,9 @@ public class ContactData {
     int result = id;
     result = 31 * result + (lname != null ? lname.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
   }
 
@@ -225,8 +246,12 @@ public class ContactData {
             ", email='" + email + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", details='" + details + '\'' +
+            ", photo='" + photo + '\'' +
+            ", groups=" + groups +
+
             '}';
   }
-
-
 }
