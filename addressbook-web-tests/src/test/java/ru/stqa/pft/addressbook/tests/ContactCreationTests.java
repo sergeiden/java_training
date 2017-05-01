@@ -66,7 +66,7 @@ public class ContactCreationTests extends TestBase {
 //            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 //  }
 
-  @Test (invocationCount = 5)
+  @Test (invocationCount = 1)
   public void testContactCreation() {
     Groups groups = app.db().groups();
     ContactData contact = new ContactData().withName("Ivan").withLname("Ivanov")
