@@ -195,13 +195,23 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addContactToGroup(int id, String groupName) {
-    selectGroupFromDropDown(groupName);
+    selectGroupFromDropDownFooter(groupName);
     selectContactById(id);
     wd.findElement(By.name("add")).click();
   }
 
-  private void selectGroupFromDropDown(String groupName) {
+  private void selectGroupFromDropDownFooter(String groupName) {
     new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
+  }
+
+  public void removeContactFromGroup(int id, String groupName) {
+    selectGroupFromDropDownHeader(groupName);
+    selectContactById(id);
+    wd.findElement(By.name("remove")).click();
+  }
+
+  private void selectGroupFromDropDownHeader(String groupName) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
   }
 }
 
