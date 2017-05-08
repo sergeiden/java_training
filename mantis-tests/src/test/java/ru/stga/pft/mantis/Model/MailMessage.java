@@ -1,4 +1,4 @@
-package ru.stga.pft.mantis.Model;
+package ru.stga.pft.mantis.model;
 
 /**
  * Created by serg on 06.05.2017.
