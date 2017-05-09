@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
 
-  private final Properties properties;
+  public final Properties properties;
   private WebDriver wd;
 
   private String browser;
@@ -29,6 +29,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private DbHelper dbHelper;
   private JamesHelper jamesHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -109,4 +110,12 @@ public class ApplicationManager {
     }
     return jamesHelper;
   }
+
+  public SoapHelper soap(){
+    if (soapHelper == null){
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
+
 }
