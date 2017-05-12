@@ -58,5 +58,7 @@ public class ContactDeleteFromGroupTests extends TestBase {
       }
     }
     assertThat(contactsAfter, equalTo(contactsBefore.without(contactToRemove)));
+    app.goTo().homePage();
+    app.goTo().resetHomePage();
   }
 }

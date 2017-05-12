@@ -61,5 +61,7 @@ public class ContactAddToGroupTests extends TestBase {
       }
     }
     assertThat(groupsAfter, equalTo(groupsBefore.withAdded(groupToAddTo)));
+    app.goTo().homePage();
+    app.goTo().resetHomePage();
   }
 }
