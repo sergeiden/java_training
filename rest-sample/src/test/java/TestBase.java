@@ -21,26 +21,21 @@ public class TestBase {
   }
 
   public  boolean isIssueOpen(int issueId) throws IOException {
-    Issue blockingIssue = new Issue().withId(issueId);
-    Set<Issue> issues = getIssues();
-    for (Issue issue : issues) {
-      if (issue.getId() == blockingIssue.getId()) {
-        blockingIssue = issue;
-      }
-    }
-    if (blockingIssue.getStatus() == null)
+    String issueStatus = getIssueData(issueId).iterator().next().getStatus();
+    if (issueStatus.equals("Resolved") || issueStatus.equals("Closed"))
       return false;
     else
       return true;
   }
 
-  private Set<Issue> getIssues() throws IOException {
-    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json"))
+  private Set<Issue> getIssueData(int id) throws IOException {
+    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues/"+id+".json"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
+
   private Executor getExecutor() {
     return Executor.newInstance().auth("LSGjeU4yP1X493ud1hNniA==", "");
   }

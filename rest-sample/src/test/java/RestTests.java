@@ -20,7 +20,7 @@ public class RestTests extends TestBase {
 
   @BeforeMethod
   public void insurePreconditions() throws IOException {
-    skipIfNotFixed(1);
+    skipIfNotFixed(7);
   }
 
   @Test
