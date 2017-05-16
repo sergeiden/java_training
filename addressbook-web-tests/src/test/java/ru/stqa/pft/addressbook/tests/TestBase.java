@@ -28,7 +28,7 @@ public class TestBase {
 
 
   protected static ApplicationManager app
-          = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
+          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite
   public void setUp() throws Exception {
@@ -53,6 +53,7 @@ public class TestBase {
   public void logTestStop(Method m, Object[] p){
     logger.info("Stop test " + m.getName() + " with parameters " + Arrays.asList(p));
   }
+
   public void verifyGroupListInUI() {
     if (Boolean.getBoolean("verifyUI")) {
       Groups dbGroups = app.db().groups();
