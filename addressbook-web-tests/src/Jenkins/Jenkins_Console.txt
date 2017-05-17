@@ -1,0 +1,37 @@
+”спешно¬ывод на консоль
+
+Started by user admin
+Building in workspace C:\Users\serg\.jenkins\workspace\addressbook-tests
+ > C:\Program Files\Git\bin\git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/sergeiden/java_training # timeout=10
+Fetching upstream changes from https://github.com/sergeiden/java_training
+ > C:\Program Files\Git\bin\git.exe --version # timeout=10
+ > C:\Program Files\Git\bin\git.exe fetch --tags --progress https://github.com/sergeiden/java_training +refs/heads/*:refs/remotes/origin/*
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision 10e47afd5abb334dd09cdf26fd72588788e786f2 (refs/remotes/origin/master)
+ > C:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\bin\git.exe checkout -f 10e47afd5abb334dd09cdf26fd72588788e786f2
+ > C:\Program Files\Git\bin\git.exe rev-list 0549a608c4565befcdb6ad386683729c9da623bc # timeout=10
+[Gradle] - Launching build.
+[addressbook-web-tests] $ cmd.exe /C "d:\Tools\gradle-3.4.1\bin\gradle.bat -Pbrowser=firefox -Ptarget=remote -Pplatform=win7 clean testGroups testContacts && exit %%ERRORLEVEL%%"
+Starting a Gradle Daemon, 1 incompatible and 3 stopped Daemons could not be reused, use --status for details
+:clean
+:compileJava NO-SOURCE
+:processResources NO-SOURCE
+:classes UP-TO-DATE
+:compileTestJavaNote: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+:processTestResources
+:testClasses
+:testGroups
+:testContacts
+
+BUILD SUCCESSFUL
+
+Total time: 2 mins 4.61 secs
+Build step 'Invoke Gradle script' changed build result to SUCCESS
+Recording test results
+Finished: SUCCESS
