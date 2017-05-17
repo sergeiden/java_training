@@ -51,7 +51,7 @@ public class ContactAddToGroupTests extends TestBase {
     GroupData groupToAddTo = groups.iterator().next();
     Groups groupsBefore = contactToAdd.getGroups();
     app.goTo().homePage();
-    app.contact().addContactToGroup(contactToAdd.getId(), groupToAddTo.getName());
+    app.contact().addContactToGroup(contactToAdd.getId(), groupToAddTo.getId());
 
     Groups groupsAfter = new Groups();
     contacts = app.db().contacts();

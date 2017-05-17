@@ -215,17 +215,21 @@ public class ContactData {
     ContactData that = (ContactData) o;
 
     if (id != that.id) return false;
-    if (!lname.equals(that.lname)) return false;
-    if (!name.equals(that.name)) return false;
-    return address.equals(that.address);
+    if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
   public int hashCode() {
     int result = id;
-    result = 31 * result + lname.hashCode();
-    result = 31 * result + name.hashCode();
-    result = 31 * result + address.hashCode();
+    result = 31 * result + (lname != null ? lname.hashCode() : 0);
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
   }
 

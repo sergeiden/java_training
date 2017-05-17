@@ -194,24 +194,24 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//a[@href='view.php?id=" + id + "']")).click();
   }
 
-  public void addContactToGroup(int id, String groupName) {
-    selectGroupFromDropDownFooter(groupName);
+  public void addContactToGroup(int id, int groupId) {
+    selectGroupFromDropDownFooter(groupId);
     selectContactById(id);
     wd.findElement(By.name("add")).click();
   }
 
-  private void selectGroupFromDropDownFooter(String groupName) {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(groupName);
+  private void selectGroupFromDropDownFooter(int groupId) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(""+groupId+"");
   }
 
-  public void removeContactFromGroup(int id, String groupName) {
-    selectGroupFromDropDownHeader(groupName);
+  public void removeContactFromGroup(int id, int groupId) {
+    selectGroupFromDropDownHeader(groupId);
     selectContactById(id);
     wd.findElement(By.name("remove")).click();
   }
 
-  private void selectGroupFromDropDownHeader(String groupName) {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupName);
+  private void selectGroupFromDropDownHeader(int groupId) {
+    new Select(wd.findElement(By.name("group"))).selectByValue(""+groupId+"");
   }
 }
 
