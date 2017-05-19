@@ -71,7 +71,8 @@ public class ContactCreationTests extends TestBase {
     Groups groups = app.db().groups();
     ContactData contact = new ContactData().withName("Ivan").withLname("Ivanov")
             .withPhoto(new File("src/test/resources/Test.jpg")).withAddress("Lenina, 20-45")
-            .withHomePhone("926-525-25-25").withEmail("test@test.ru").inGroup(groups.iterator().next());
+            .withHomePhone("926-525-25-25").withMobilePhone("333").withWorkPhone("444")
+            .withEmail("test@test.ru").inGroup(groups.iterator().next());
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     app.contact().create(contact);

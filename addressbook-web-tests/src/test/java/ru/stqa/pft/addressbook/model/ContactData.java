@@ -54,7 +54,8 @@ public class ContactData {
   @Transient
   private String details;
   @Expose
-  @Transient
+  @Column(name = "photo")
+  @Type(type = "text")
   private String photo;
 //  @Transient
 //  private String group;
@@ -81,7 +82,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
+    this.photo = photo.getAbsolutePath();
     return this;
   }
 
@@ -219,7 +220,14 @@ public class ContactData {
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     if (address != null ? !address.equals(that.address) : that.address != null) return false;
     if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
-    return groups != null ? groups.equals(that.groups) : that.groups == null;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
+    if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
+    return details != null ? details.equals(that.details) : that.details == null;
   }
 
   @Override
@@ -229,7 +237,12 @@ public class ContactData {
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
     result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
-    result = 31 * result + (groups != null ? groups.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+    result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
+    result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
+    result = 31 * result + (details != null ? details.hashCode() : 0);
     return result;
   }
 
@@ -241,17 +254,13 @@ public class ContactData {
             ", name='" + name + '\'' +
             ", address='" + address + '\'' +
             ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
             ", email='" + email + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
             ", allPhones='" + allPhones + '\'' +
             ", allEmails='" + allEmails + '\'' +
             ", details='" + details + '\'' +
-            ", photo='" + photo + '\'' +
             ", groups=" + groups +
-
             '}';
   }
 }
