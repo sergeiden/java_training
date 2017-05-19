@@ -8,6 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,7 +39,7 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("lastname"), contactData.getLname());
-//    attach(By.name("photo"), contactData.getPhoto());
+    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());

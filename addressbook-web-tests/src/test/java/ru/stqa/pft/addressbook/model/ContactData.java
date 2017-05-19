@@ -78,7 +78,11 @@ public class ContactData {
 //  }
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo != null) {
+      return new File(photo);
+    } else {
+      return null;
+    }
   }
 
   public ContactData withPhoto(File photo) {
@@ -254,12 +258,15 @@ public class ContactData {
             ", name='" + name + '\'' +
             ", address='" + address + '\'' +
             ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             ", email='" + email + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
             ", allPhones='" + allPhones + '\'' +
             ", allEmails='" + allEmails + '\'' +
             ", details='" + details + '\'' +
+            ", photo='" + photo + '\'' +
             ", groups=" + groups +
             '}';
   }
